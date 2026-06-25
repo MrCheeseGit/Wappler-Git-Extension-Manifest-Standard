@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/MrCheeseGit/Wappler-Git-Extension-Manifest-Standard/main/wappler-install.schema.json",
+  "title": "Wappler Git Extension Install Manifest",
+  "description": "Install instructions for Git-born Wappler extensions (schema version 1)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "name"],
+  "properties": {
+    "schema": {
+      "type": "integer",
+      "const": 1,
+      "description": "Schema version; must be 1 for this definition"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "Stable lowercase slug (e.g. push-it)"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable extension name"
+    },
+    "version": {
+      "type": "string",
+      "description": "Extension version (semver recommended)"
+    },
+    "cloneDir": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Suggested folder name for git clone"
+    },
+    "hasServerConnect": {
+      "type": "boolean"
+    },
+    "hasAppConnect": {
+      "type": "boolean"
+    },
+    "readme": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to full documentation"
+    },
+    "serverConnect": {
+      "$ref": "#/$defs/installSection"
+    },
+    "appConnect": {
+      "$ref": "#/$defs/installSection"
+    }
+  },
+  "anyOf": [
+    { "required": ["serverConnect"] },
+    { "required": ["appConnect"] }
+  ],
+  "$defs": {
+    "relativePath": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*\\.\\.).+$",
+      "minLength": 1
+    },
+    "copyEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["src", "dest"],
+      "properties": {
+        "src": { "$ref": "#/$defs/relativePath" },
+        "dest": { "$ref": "#/$defs/relativePath" }
+      }
+    },
+    "installSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "directories": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/relativePath" },
+          "uniqueItems": true
+        },
+        "copy": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/copyEntry" }
+        },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

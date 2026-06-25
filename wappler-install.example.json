@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "id": "my-extension",
+  "name": "My Extension",
+  "version": "1.0.0",
+  "cloneDir": "Wappler-My-Extension",
+  "hasServerConnect": true,
+  "hasAppConnect": false,
+  "readme": "https://github.com/example/Wappler-My-Extension#installation",
+  "serverConnect": {
+    "directories": [
+      "extensions/server_connect/modules",
+      "lib/modules"
+    ],
+    "copy": [
+      { "src": "mymodule.hjson", "dest": "extensions/server_connect/modules/mymodule.hjson" },
+      { "src": "mymodule.js", "dest": "lib/modules/mymodule.js" },
+      { "src": "mymodule.js", "dest": "extensions/server_connect/modules/mymodule.js" }
+    ],
+    "notes": [
+      "Quit Wappler completely and restart.",
+      "See README for environment variables and examples."
+    ]
+  }
+}
