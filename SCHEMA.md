@@ -92,6 +92,13 @@ Plain text strings. Rendered as bullet lists in install wizards.
 - “In Wappler, add the App Connect Browser component and set ID to `browser`.”
 - “Set VAPID_* env vars in Wappler — see README.”
 - “Quit Wappler completely and restart.”
+- “npm: add `wappler-your-extension` to `package.json` devDependencies (`file:../Server-Connect/Extensions/yourCloneDir`) and run `npm install`.”
+- “Register the extension in `.wappler/project.json` if the Elements picker stays empty.”
+
+**App Connect extensions — always mention both lanes when publishing npm packages:**
+
+- Manifest copy (Git / ConnectBench `.cbext`) places runtime files in `extensions/` and `public/`.
+- npm + `node_modules` is required for the **Wappler IDE** Elements picker and property panel.
 
 **Avoid:**
 
@@ -110,6 +117,19 @@ Plain text strings. Rendered as bullet lists in install wizards.
 | Server Connect only | `serverConnect` section |
 | App Connect only | `appConnect` section |
 | Both | merge `directories`, `copy`, `notes` from both sections (dedupe directories and notes) |
+
+### ConnectBench (`.cbext` client)
+
+ConnectBench implements schema v1 copy **plus** the npm companion lane for App Connect IDE integration. See [CONNECTBENCH.md](./CONNECTBENCH.md).
+
+Summary for authors:
+
+- Manifest `copy[]` alone does **not** populate the Wappler Elements picker — consumers also need `node_modules/wappler-*` linked via `npm install`.
+- Set `cloneDir` when the repo folder name differs from `id`.
+- Include npm + Wappler restart bullets in `appConnect.notes[]`.
+- Extension `package.json` must use a `wappler-*` name and `wappler-extension` keyword for tool registration.
+
+No additional manifest fields are required for ConnectBench in schema v1.
 
 ### Directory list
 

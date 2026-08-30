@@ -26,6 +26,7 @@ A small JSON file at the **root of an extension Git repository** that describes 
 | **Git Extension Installer** | [mrcheese.co.uk/extensions/install](https://www.mrcheese.co.uk/extensions/install) |
 | **npm install assistant** | [mrcheese.co.uk/extensions/install/npm](https://www.mrcheese.co.uk/extensions/install/npm) |
 | **Manifest Builder** | [mrcheese.co.uk/extensions/manifest-builder](https://www.mrcheese.co.uk/extensions/manifest-builder) |
+| **ConnectBench** (`.cbext` install) | [CONNECTBENCH.md](./CONNECTBENCH.md) |
 
 The Git installer fetches `wappler-install.json` from GitHub when present, with a bundled fallback for extensions without a manifest. The npm assistant uses the same manifest to generate `cp` commands from `node_modules/wappler-*` (after you verify the package exists).
 
@@ -48,6 +49,7 @@ The Git installer fetches `wappler-install.json` from GitHub when present, with 
 | [PROPOSAL.md](./PROPOSAL.md) | Full proposal — problem, goals, architecture |
 | [SCHEMA.md](./SCHEMA.md) | Schema version 1 — field reference |
 | [MANIFEST-BUILDER.md](./MANIFEST-BUILDER.md) | Author tool specification |
+| [CONNECTBENCH.md](./CONNECTBENCH.md) | ConnectBench `.cbext` install client (npm companion lane) |
 | [community-post.md](./community-post.md) | Draft Wappler Community / Discourse announcement |
 | [wappler-install.example.json](./wappler-install.example.json) | Minimal valid example |
 | [examples/](./examples/) | PuSH-IT and Redirect-IT samples |
